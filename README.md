@@ -53,7 +53,7 @@ To sandbox python, use [CodeJail](https://github.com/edx/codejail). In your hand
 
 	"CODEJAIL": {
 		"name": "python",
-		"python_bin": "/path/to/sandbox/python",
+		"python_bin": "/path/to/test-sandbox/python",
 		"user": "sandbox_username"
 	}
 
