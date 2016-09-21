@@ -82,7 +82,7 @@ class JailedGrader(Grader):
         r = jail.jail_code(files=files, extra_files=extra_files, argv=argv)
         return r
 
-    def grade(self, grader_path, grader_config, submission):
+    def grade(self, grader_path, grader_config, submission, files):
         if type(submission) != unicode:
             self.log.warning("Submission is NOT unicode")
 

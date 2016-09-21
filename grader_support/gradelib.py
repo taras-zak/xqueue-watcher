@@ -186,6 +186,21 @@ class Grader(object):
         """
         self._input_checks.append(check)
 
+class CustomGrader(object):
+    def __init__(self):
+        self._tests = []
+
+    def add_test(self, test):
+        self._tests.append(test)
+
+    def tests(self):
+        return self._tests
+
+    def uncaught_end_tests(self):
+        """
+        How many EndTest exceptions were raised but not caugh
+        """
+        pass
 
 ## Preprocessors ##########################################################
 
@@ -555,3 +570,17 @@ def round_float_writer(n):
     def _round_float_output_writer(f):
         return "%.*f" % (n, f)
     return _round_float_output_writer
+
+def countTest(title, desctription, string, count, success, fail, weight=1):
+     def doit(submission):
+         actual = submission.count(string)
+         passed = 0.0
+         result = ''
+         if actual < count:
+            result = fail
+         else:
+            passed = 1.0 * weight
+            result = success
+         return (title, desctription, passed, string, result, weight)
+     return doit
+
