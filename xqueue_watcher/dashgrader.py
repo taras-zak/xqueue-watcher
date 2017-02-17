@@ -18,7 +18,7 @@ class DashGrader(jailedgrader.JailedGrader):
                 files = SUPPORT_FILES + [grader_path]
                 if self.locale_dir.exists():
                     files.append(self.locale_dir)
-                extra_files = [('submission.py', tests.encode('utf-8')), ('grabber.py', grabber.encode('utf-8')), ('app.py', app.encode('utf-8'))]
+                extra_files = [('submission.py', tests.encode('utf-8')), ('grabber.py', grabber.encode('utf-8')), ('flask_app.py', app.encode('utf-8'))]
                 argv = ["-m", "grader_support.run", path(grader_path).basename(), 'submission.py', seed]
                 #self.log.warning("\nOne: {0}\nFiles: {1}\nExtra: {2}\nArgv: {3}".format(self.codejail_python, files, extra_files, argv))
                 r = jail_code(self.codejail_python, files=files, extra_files=extra_files, argv=argv)
@@ -39,8 +39,8 @@ class DashGrader(jailedgrader.JailedGrader):
                if files and not submission:
                    #self.log.warning("\nS: {0}\nF: {0}".format(submission=='', files=={}))
                    student_response = urllib2.urlopen(files['grabber.py']).read()
-                   if 'app.py' in files.keys():
-                        app_submission = urllib2.urlopen(files['app.py']).read()
+                   if 'flask_app.py' in files.keys():
+                        app_submission = urllib2.urlopen(files['flask_app.py']).read()
                
                #self.log.warning('\nGrabber: {0},\nApp: {1}'.format(student_response, app_submission))
 
